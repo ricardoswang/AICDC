@@ -25,9 +25,9 @@ for cat in stuff_buf:
                 v = im.getpixel((wi, hi))
                 assert(len(v) == 3)
 
-                r_vs.append(v[0])
-                g_vs.append(v[1])
-                b_vs.append(v[2])
+                r_vs.append(v[0] / 255.0)
+                g_vs.append(v[1] / 255.0)
+                b_vs.append(v[2] / 255.0)
 
 r_mean = np.mean(r_vs)
 print("Done with r_mean: %8f" % r_mean)
