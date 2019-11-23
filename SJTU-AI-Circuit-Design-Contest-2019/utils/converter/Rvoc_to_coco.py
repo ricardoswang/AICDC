@@ -3,14 +3,13 @@
 import os
 import cv2
 import sys
-import PIL
 import json
 import random
 import train_list
-from pycocotools import mask as cocomask
+
+from PIL import Image
 
 stuff_buf = train_list.stuff
-
 
 total_count = sum([len(i) for i in stuff_buf])
 
@@ -104,14 +103,18 @@ for index in range(4):
         img = im.convert('RGB')
         mask = im.convert('L')
 
-        segmentation, bbox, area = self.__get_annotation__(mask, im)
+        # segmentation, bbox, area = self.__get_annotation__(mask, im)
+
+        x, y, w, h = straint_box[0] * width, straint_box[1] * \
+            height, (straint_box[2] - straint_box[0]) * \
+            width, (straint_box[3] - straint_box[1]) * height
 
         coco_instance["annotations"].append({
-            "segmentation": segmentation,
-            "area": area,
+            "segmentation": []],
+            "area": 42,
             "iscrowd": 0,
             "image_id": id_pool[counter],
-            "bbox": [straint_box[0] * width, straint_box[1] * height, straint_box[2] * width, straint_box[3] * height],
+            "bbox": [x, y, w, h],
             "category_id": index + 1,
             "id": counter
         })
