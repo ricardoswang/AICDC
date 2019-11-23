@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import IR
-import statistics
-
+import numpy as np
 from PIL import Image
 
 stuff_buf = IR.stuff
@@ -30,13 +29,23 @@ for cat in stuff_buf:
                 g_vs.append(v[1])
                 b_vs.append(v[2])
 
-r_mean = statistics.mean(r_vs)
-g_mean = statistics.mean(g_vs)
-b_mean = statistics.mean(b_vs)
+r_mean = np.mean(r_vs)
+print("Done with r_mean: %8f" % r_mean)
 
-r_variance = statistics.variance(r_vs)
-g_variance = statistics.variance(g_vs)
-b_variance = statistics.variance(b_vs)
+g_mean = np.mean(g_vs)
+print("Done with g_mean: %8f" % g_mean)
+
+b_mean = np.mean(b_vs)
+print("Done with b_mean: %8f" % b_mean)
+
+r_variance = np.var(r_vs)
+print("Done with r_variance: %8f" % r_variance)
+
+g_variance = np.var(g_vs)
+print("Done with g_variance: %8f" % g_variance)
+
+b_variance = np.var(b_vs)
+print("Done with b_variance: %8f" % b_variance)
 
 print("""
 (つД`)ノ
