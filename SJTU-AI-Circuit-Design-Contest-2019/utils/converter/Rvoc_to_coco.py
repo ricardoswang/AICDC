@@ -5,11 +5,11 @@ import cv2
 import sys
 import json
 import random
-import train_list
+import IR
 
 from PIL import Image
 
-stuff_buf = train_list.stuff
+stuff_buf = IR.stuff
 
 total_count = sum([len(i) for i in stuff_buf])
 
