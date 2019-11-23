@@ -110,7 +110,7 @@ for index in range(4):
             width, (straint_box[3] - straint_box[1]) * height
 
         coco_instance["annotations"].append({
-            "segmentation": []],
+            "segmentation": [],
             "area": 42,
             "iscrowd": 0,
             "image_id": id_pool[counter],
