@@ -9,4 +9,4 @@ cp ./rvoc.txt ./IR.py
 sed -i '' -e '1i \
 stuff = \\' ./IR.py
 
-python3 ./Rvoc_to_coco.py
+python3 ./mean_and_variance.py

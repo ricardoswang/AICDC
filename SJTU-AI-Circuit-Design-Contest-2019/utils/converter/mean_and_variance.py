@@ -23,7 +23,7 @@ for cat in stuff_buf:
 
         for wi in range(width):
             for hi in range(height):
-                v = im.getpixel((w, h))
+                v = im.getpixel((wi, hi))
                 assert(len(v) == 3)
 
                 r_vs.append(v[0])
