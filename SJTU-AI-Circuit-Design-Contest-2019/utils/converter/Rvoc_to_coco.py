@@ -116,3 +116,8 @@ for index in range(4):
             "id": counter
         })
         counter += 1
+
+with open('./' + input("input your expecting json output path >>> ") + '.json', 'w') as f:
+    f.write(json.dumps(coco_instance))
+
+print("Bye")
