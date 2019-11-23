@@ -42,14 +42,14 @@ print("""
 (つД`)ノ
 
 ===== MEAN ===== 
-R: %.8d
-G: %.8d
-B: %.8d
+R: %.8f
+G: %.8f
+B: %.8f
 
 === VARIANCE ===
-R: %.8d
-G: %.8d
-B: %.8d
+R: %.8f
+G: %.8f
+B: %.8f
 
 EOF
 """ % (r_mean, g_mean, b_mean, r_variance, g_variance, b_variance))
