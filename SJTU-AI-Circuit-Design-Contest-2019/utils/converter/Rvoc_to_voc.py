@@ -75,5 +75,3 @@ for index in range(4):
 
         with open(file_path.replace(file_name, '') + '/xml/' + file_name + '.xml', 'w') as f:
             f.write(xml_content)
-
-        print("Bye")
