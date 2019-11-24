@@ -24,7 +24,7 @@ class reduced_voc(data.Dataset):
     self.img_dir = os.path.join(self.data_dir, 'images')
     if split == 'val':
       self.annot_path = os.path.join(
-          self.data_dir, 'annotations', 
+         self.data_dir, 'annotations', 
           'os_val.json').format(split)
     else:
       if split == 'test':
@@ -33,13 +33,13 @@ class reduced_voc(data.Dataset):
            'os_val.json').format(split)
       else:
 	if opt.task == 'exdet':
-          self.annot_path = os.path.join(
-           self.data_dir, 'annotations', 
-           'os.json').format(split)
+           self.annot_path = os.path.join(
+             self.data_dir, 'annotations', 
+             'os.json').format(split)
 	else:
-          self.annot_path = os.path.join(
-           self.data_dir, 'annotations', 
-           'os.json').format(split)
+           self.annot_path = os.path.join(
+            self.data_dir, 'annotations', 
+            'os.json').format(split)
     self.max_objs = 128
     self.class_name = [
       '__background__','Aeroplane', 'Car', 'Sofa', 'TV Monitor']
