@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import pycocotools.coco as reduced_voc_o
+import pycocotools.coco as coco
 from pycocotools.cocoeval import COCOeval
 import numpy as np
 import json
@@ -11,7 +11,7 @@ import os
 import torch.utils.data as data
 
 class reduced_voc(data.Dataset):
-  num_classes = 4
+  num_classes = 5
   default_resolution = [512, 512]
   mean = np.array([0.45962098, 0.45204785, 0.44138096],
                    dtype=np.float32).reshape(1, 1, 3)
@@ -23,18 +23,23 @@ class reduced_voc(data.Dataset):
     self.data_dir = os.path.join(opt.data_dir, 'reduced_voc')
     self.img_dir = os.path.join(self.data_dir, 'images')
     if split == 'val':
-      self.annot_path = os.path.join(
-          self.data_dir, 'annotations', 
-          'os_val.json').format(split)
+       self.annot_path = os.path.join(
+         self.data_dir, 'annotations', 
+         'os_val.json').format(split)
     else:
-      if opt.task == 'exdet':
-        self.annot_path = os.path.join(
-          self.data_dir, 'annotations', 
-          'os.json').format(split)
+      if split == 'test':
+      	 self.annot_path = os.path.join(
+           self.data_dir, 'annotations', 
+           'os_val.json').format(split)
       else:
-        self.annot_path = os.path.join(
-          self.data_dir, 'annotations', 
-          'os.json').format(split)
+        if opt.task == 'exdet':
+           self.annot_path = os.path.join(
+             self.data_dir, 'annotations', 
+             'os.json').format(split)
+        else:
+           self.annot_path = os.path.join(
+            self.data_dir, 'annotations', 
+            'os.json').format(split)
     self.max_objs = 128
     self.class_name = [
       '__background__','Aeroplane', 'Car', 'Sofa', 'TV Monitor']
@@ -57,9 +62,9 @@ class reduced_voc(data.Dataset):
     self.split = split
     self.opt = opt
 
-    print('==> initializing reduced_voc 2017 {} data.'.format(split))
-    self.reduced_voc_o = reduced_voc_o.reduced_voc(self.annot_path)
-    self.images = self.reduced_voc_o.getImgIds()
+    print('==> initializing coco 2017 {} data.'.format(split))
+    self.coco = coco.COCO(self.annot_path)
+    self.images = self.coco.getImgIds()
     self.num_samples = len(self.images)
 
     print('Loaded {} {} samples'.format(split, self.num_samples))
@@ -103,8 +108,8 @@ class reduced_voc(data.Dataset):
     # detections  = self.convert_eval_format(results)
     # json.dump(detections, open(result_json, "w"))
     self.save_results(results, save_dir)
-    reduced_voc_o_dets = self.reduced_voc_o.loadRes('{}/results.json'.format(save_dir))
-    coco_eval = COCOeval(self.reduced_voc_o, reduced_voc_o_dets, "bbox")
+    coco_dets = self.coco.loadRes('{}/results.json'.format(save_dir))
+    coco_eval = COCOeval(self.coco, coco_dets, "bbox")
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()

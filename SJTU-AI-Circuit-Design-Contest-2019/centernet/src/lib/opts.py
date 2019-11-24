@@ -335,7 +335,7 @@ class opts(object):
 
   def init(self, args=''):
     default_dataset_info = {
-      'ctdet': {'default_resolution': [512, 512], 'num_classes': 4, 
+      'ctdet': {'default_resolution': [512, 512], 'num_classes': 5, 
                 'mean': [0.460, 0.452, 0.441], 'std': [0.073, 0.072, 0.083],
                 'dataset': 'reduced_voc'},
       'exdet': {'default_resolution': [512, 512], 'num_classes': 80, 
