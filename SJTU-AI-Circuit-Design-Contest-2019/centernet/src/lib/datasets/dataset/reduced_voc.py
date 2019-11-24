@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import pycocotools.coco as reduced_voc
+import pycocotools.coco as reduced_voc_o
 from pycocotools.cocoeval import COCOeval
 import numpy as np
 import json
@@ -58,8 +58,8 @@ class reduced_voc(data.Dataset):
     self.opt = opt
 
     print('==> initializing reduced_voc 2017 {} data.'.format(split))
-    self.reduced_voc = reduced_voc.reduced_voc(self.annot_path)
-    self.images = self.reduced_voc.getImgIds()
+    self.reduced_voc_o = reduced_voc_o.reduced_voc(self.annot_path)
+    self.images = self.reduced_voc_o.getImgIds()
     self.num_samples = len(self.images)
 
     print('Loaded {} {} samples'.format(split, self.num_samples))
@@ -103,8 +103,8 @@ class reduced_voc(data.Dataset):
     # detections  = self.convert_eval_format(results)
     # json.dump(detections, open(result_json, "w"))
     self.save_results(results, save_dir)
-    reduced_voc_dets = self.reduced_voc.loadRes('{}/results.json'.format(save_dir))
-    coco_eval = COCOeval(self.reduced_voc, reduced_voc_dets, "bbox")
+    reduced_voc_o_dets = self.reduced_voc_o.loadRes('{}/results.json'.format(save_dir))
+    coco_eval = COCOeval(self.reduced_voc_o, reduced_voc_o_dets, "bbox")
     coco_eval.evaluate()
     coco_eval.accumulate()
     coco_eval.summarize()
