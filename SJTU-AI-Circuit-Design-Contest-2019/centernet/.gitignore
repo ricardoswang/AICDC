@@ -2,7 +2,6 @@ legacy/*
 .DS_Store
 debug/*
 *.DS_Store
-*.json
 *.mat
 src/.vscode/*
 preds/*
