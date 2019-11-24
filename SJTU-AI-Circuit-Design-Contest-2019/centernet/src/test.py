@@ -117,8 +117,6 @@ def test(opt):
     bar.next()
   bar.finish()
   dataset.run_eval(results, opt.save_dir)
-  with open("./os.json", 'w') as f:
-    f.write(json.dumps(results))
 
 if __name__ == '__main__':
   opt = opts().parse()
