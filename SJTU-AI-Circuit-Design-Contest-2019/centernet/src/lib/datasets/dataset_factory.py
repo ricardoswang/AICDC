@@ -11,7 +11,7 @@ from .dataset.coco import COCO
 from .dataset.pascal import PascalVOC
 from .dataset.kitti import KITTI
 from .dataset.coco_hp import COCOHP
-
+from .dataset.reduced_voc import reduced_voc
 
 dataset_factory = {
   'coco': COCO,
