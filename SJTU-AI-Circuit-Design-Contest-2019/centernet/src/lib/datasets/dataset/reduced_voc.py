@@ -36,7 +36,7 @@ class reduced_voc(data.Dataset):
            self.annot_path = os.path.join(
              self.data_dir, 'annotations', 
              'os.json').format(split)
-	else:
+        else:
            self.annot_path = os.path.join(
             self.data_dir, 'annotations', 
             'os.json').format(split)
