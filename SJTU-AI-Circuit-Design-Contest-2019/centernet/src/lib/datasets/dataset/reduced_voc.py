@@ -27,15 +27,16 @@ class reduced_voc(data.Dataset):
           self.data_dir, 'annotations', 
           'os_val.json').format(split)
     else:
-      if opt.task == 'exdet':
-        self.annot_path = os.path.join(
-          self.data_dir, 'annotations', 
-          'os.json').format(split)
       if split == 'test':
-      self.annot_path = os.path.join(
+      	self.annot_path = os.path.join(
           self.data_dir, 'annotations', 
           'os_val.json').format(split)
       else:
+	if opt.task == 'exdet':
+        self.annot_path = os.path.join(
+          self.data_dir, 'annotations', 
+          'os.json').format(split)
+	else:
         self.annot_path = os.path.join(
           self.data_dir, 'annotations', 
           'os.json').format(split)
