@@ -11,7 +11,7 @@ import os
 import torch.utils.data as data
 
 class reduced_voc(data.Dataset):
-  num_classes = 4
+  num_classes = 5
   default_resolution = [512, 512]
   mean = np.array([0.45962098, 0.45204785, 0.44138096],
                    dtype=np.float32).reshape(1, 1, 3)

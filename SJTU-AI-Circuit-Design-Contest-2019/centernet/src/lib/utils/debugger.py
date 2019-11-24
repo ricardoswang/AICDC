@@ -45,7 +45,7 @@ class Debugger(object):
       self.names = coco_class_name
     elif num_classes == 20 or dataset == 'pascal':
       self.names = pascal_class_name
-    elif num_classes == 4 or dataset == 'reduced_voc':
+    elif num_classes == 5 or dataset == 'reduced_voc':
       self.names = reduced_voc_class_name
     elif dataset == 'gta':
       self.names = gta_class_name
@@ -458,7 +458,7 @@ coco_class_name = [
      'scissors', 'teddy bear', 'hair drier', 'toothbrush'
 ]
 
-reduced_voc_class_name = ["Aeroplane", 
+reduced_voc_class_name = ["__background__","Aeroplane", 
   "Car", "Sofa",  "TV Monitor"]
 
 
