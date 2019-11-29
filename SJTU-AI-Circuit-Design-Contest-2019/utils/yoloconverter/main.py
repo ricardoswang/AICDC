@@ -30,8 +30,8 @@ for cati in range(4):
 
         for rel_path in images_name:
             if filename in rel_path:
-                txtpath = rel_path.replace('.jpg', '.txt')
-                txt_paths.append(txtpath)
+                txtpath = rel_path.replace('.jpg', '.txt').replace('images', 'labels')
+                txt_paths.append(rel_path)
                 with open(txtpath, 'w') as tf:
                     tf.write("%d %.6f %.6f %.6f %.6f" %
                              (cati, bbox[0], bbox[1], bbox[2], bbox[3]))
