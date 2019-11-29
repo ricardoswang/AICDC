@@ -34,7 +34,7 @@ for cati in range(4):
                 txt_paths.append(rel_path)
                 with open(txtpath, 'w') as tf:
                     tf.write("%d %.6f %.6f %.6f %.6f" %
-                             (cati, bbox[0], bbox[1], bbox[2], bbox[3]))
+                             (cati, (bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2, bbox[2] - bbox[0], bbox[3] - bbox[1]))
                 break
 
 txt_index_path = input("Where would you like to put your index txt file? >>> ")
