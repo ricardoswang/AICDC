@@ -36,6 +36,7 @@ def parse_data_cfg(path):
         line = line.strip()
         if line == '' or line.startswith('#'):
             continue
+        print("going to parse", line)
         key, val = line.split('=')
         options[key.strip()] = val.strip()
 
