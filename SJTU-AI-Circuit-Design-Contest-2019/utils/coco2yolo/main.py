@@ -19,7 +19,7 @@ images = {}
 for img in data['images']:
     images.update({
         img['id']: {
-            'name': img['filename'],
+            'name': img['file_name'],
             'size': (img['width'], img['height']),
             'annotation': []
         }
@@ -40,16 +40,16 @@ for anno in data['annotations']:
     x1, y1, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
     cx, cy = x1 + w / 2, y1 + h / 2
 
-    images[iid]['annotations'].append(
+    images[iid]['annotation'].append(
         [cat, [cx / tw, cy / th, w / tw, h / th]])
 
 export_path = input("Which folder would you like to put txt files? >>> ")
 
 if not export_path.endswith('/'):
     export_path += '/'
-for ids, image in image.items():
-    txt_fn = image['name'].replace('.jpg', '.txt')
+for k, v in images.items():
+    txt_fn = v['name'].replace('.jpg', '.txt')
     with open(export_path + txt_fn, 'w') as f:
-        for anno in image['annotation']:
+        for anno in v['annotation']:
             f.write('%d %f %f %f %f' %
                     (anno[0], anno[1][0], anno[1][1], anno[1][2], anno[1][3]))
