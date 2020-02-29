@@ -53,7 +53,7 @@ for anno_obj in obj['annotations']:
 
     with open(label_name, 'w') as label_f:
         label_f.write("%d %.6f %.6f %.6f %.6f" % (
-            anno_obj['category_id'], center_x / width, center_y / height, rect_w / width, rect_h / height))
+            anno_obj['category_id'] - 1, center_x / width, center_y / height, rect_w / width, rect_h / height))
 
     image_list.append(os.path.join(i_wrapping_path, image_name))
 
