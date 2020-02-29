@@ -46,6 +46,9 @@ jpeg_compression_quality = int(
 
 for root, _, imgs in os.walk(image_folder):
     for img_file in imgs:
+        if not img_file.endswith('.jpg'):
+            continue
+
         # print(img_file)
         original_image = Image.open(os.path.join(root, img_file))
 
@@ -82,6 +85,8 @@ for root, _, imgs in os.walk(image_folder):
 for root, _, labels in os.walk(label_folder):
     for label_file in labels:
         # print(label_file)
+        if not label_file.endswith('.txt'):
+            continue
 
         with open(os.path.join(root, label_file), 'r') as org_f:
             contents = org_f.read()
