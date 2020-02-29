@@ -41,10 +41,15 @@ for cat_obj in obj['categories']:
     })
 
 for anno_obj in obj['annotations']:
-    x1, y1, x2, y2 = anno_obj['bbox']
+    x1, y1, rect_w, rect_h = anno_obj['bbox']
 
-    center_x, center_y, rect_w, rect_h = (
-        x1 + x2) / 2, (y1 + y2) / 2, (x2 - x1), (y2 - y1)
+    # center_x, center_y, rect_w, rect_h = (
+    # x1 + x2) / 2, (y1 + y2) / 2, (x2 - x1), (y2 - y1)
+
+    center_x, center_y = x1 + rect_w / 2, y1 + rect_h / 2
+
+    # print(rect_w, rect_h)
+    # input()
 
     width, height, image_name = image_map[anno_obj['image_id']]
 
