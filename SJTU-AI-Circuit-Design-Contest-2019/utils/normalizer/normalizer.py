@@ -14,9 +14,9 @@ for img in origin_data["images"]:
     path_mapping[img['id']] = (img['width'], img['height'])
 
 for result in result_data:
+    pass
 
-
-{"image_id": 292,
- "category_id": 0,
-    "bbox": [-4.66, -93.44, 10.72, 24.06],
-    "score": 0.01}
+# {"image_id": 292,
+#  "category_id": 0,
+#     "bbox": [-4.66, -93.44, 10.72, 24.06],
+#     "score": 0.01}
