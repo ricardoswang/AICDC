@@ -7,7 +7,7 @@ import requests
 import datetime
 import subprocess
 
-update_freq = 2.5
+update_freq = 1
 threshold = 200
 
 issue_index = 2
@@ -15,6 +15,8 @@ issue_index = 2
 first_time = False
 
 token = os.getenv('GITHUB_TOKEN')
+
+assert(token)
 
 header = {
     'Authorization': 'token %s' % token
