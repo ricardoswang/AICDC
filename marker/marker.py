@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+from random import randint
 from PIL import Image, ImageDraw
 
-img_path = input("image? >>> ")
+img_path = input("image? >>> ").strip()
 
 image_obj = Image.open(img_path)
 
@@ -12,7 +13,7 @@ drawer = ImageDraw.Draw(image_obj)
 
 strokeWidth = 5
 
-color = [(255, 0, 0), (0, 0, 255)]
+color = []
 
 while True:
     bbox = input(
@@ -28,6 +29,9 @@ while True:
     assert(len(items) == 5)
 
     cat = int(items[0])
+
+    while len(color) <= cat:
+        color.append((randint(0, 255), randint(0, 255), randint(0, 255)))
 
     centerx, centery, bboxw, bboxh = [float(x) for x in items[1:]]
 
