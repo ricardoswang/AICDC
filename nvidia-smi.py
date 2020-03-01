@@ -51,8 +51,8 @@ while True:
             cont_1_mem += int(tokens[-1].strip())
 
     message = """
-    Core #0 memory usage: %d
-    Core #1 memory usage: %d
+    Core #0 memory usage: %d MiB
+    Core #1 memory usage: %d MiB
 
     Update time: %s
     """ % (cont_0_mem, cont_1_mem, timestamp.strftime(r'%Y.%m.%d %H:%M:%S'))
