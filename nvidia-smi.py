@@ -62,9 +62,10 @@ while True:
     if first_time:
         try:
             send_message("[normal routinely notification]\n" + message)
+            first_time = False
         except:
             print("failed to send [normal routinely notification] message.")
-        first_time = False
+
     elif cont_0_mem < threshold and cont_1_mem < threshold:
         try:
             send_message(
@@ -78,9 +79,8 @@ while True:
     elif timestamp.minute == 0 or timestamp.minute == 30:
         try:
             send_message("[normal routinely notification]\n" + message)
+            time.sleep(60.0)
         except:
             print("failed to send [normal routinely notification] message.")
-            continue
-        time.sleep(60.0)
 
     time.sleep(update_freq)
