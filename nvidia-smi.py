@@ -69,15 +69,24 @@ while True:
             print("failed to send [normal routinely notification] message.")
 
     elif cont_0_mem < threshold and cont_1_mem < threshold:
+
+        # 开始缺德
         try:
-            send_message(
-                "[resource free!]\nmaking an preempting attempt.\n" + message)
+            subprocess.Popen(['./start_train.sh'])
         except:
             pass
-        # 开始缺德
-        os.system('./start_train.sh')
-        # subprocess.call(['./start_train.sh'])
-        break
+
+        while True:
+            # os.system('./start_train.sh')
+            try:
+                send_message(
+                    "[resource free!]\nmaking an preempting attempt.\n" + message)
+                break
+            except:
+                print(
+                    "failed to send [normal routinely notification] message.")
+
+        exit(0)
     elif timestamp.minute == 0 or timestamp.minute == 30:
         try:
             send_message("[normal routinely notification]\n" + message)
