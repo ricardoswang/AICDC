@@ -11,7 +11,7 @@ threshold = 100
 
 issue_index = 2
 
-first_time = True
+first_time = False
 
 token = os.getenv('GITHUB_TOKEN')
 
@@ -63,9 +63,10 @@ while True:
         send_message("[normal routinely notification]\n" + message)
         first_time = False
     elif cont_0_mem < threshold or cont_1_mem < threshold:
-        send_message("[normal routinely notification]\n" + message)
-    elif timestamp.minute == 0 or timestamp.minute == 30:
         send_message("[resource free!]\n" + message)
+        break
+    elif timestamp.minute == 0 or timestamp.minute == 30:
+        send_message("[normal routinely notification]\n" + message)
         time.sleep(60.0)
 
     time.sleep(update_freq)
