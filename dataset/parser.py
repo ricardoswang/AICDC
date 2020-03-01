@@ -19,6 +19,10 @@ if not pathlib.Path(l_wrapping_path).is_dir():
     exit(-1)
 
 print("""
+Be sure that label folder %s contains no remaning label files.
+""" % l_wrapping_path)
+
+print("""
 Be sure that your image path prefix and label path prefix matches exactly as decalred in https://github.com/ultralytics/yolov3/wiki/Train-Custom-Data.
 """)
 
@@ -56,8 +60,8 @@ for anno_obj in obj['annotations']:
     label_name = os.path.join(
         l_wrapping_path, image_name.replace('.jpg', '.txt'))
 
-    with open(label_name, 'w') as label_f:
-        label_f.write("%d %.6f %.6f %.6f %.6f" % (
+    with open(label_name, 'a') as label_f:
+        label_f.write("%d %.6f %.6f %.6f %.6f\n" % (
             anno_obj['category_id'] - 1, center_x / width, center_y / height, rect_w / width, rect_h / height))
 
     image_list.append(os.path.join(i_wrapping_path, image_name))
