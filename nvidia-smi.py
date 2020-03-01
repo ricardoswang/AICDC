@@ -5,13 +5,14 @@ import re
 import time
 import requests
 import datetime
+import subprocess
 
-update_freq = 30.0
-threshold = 100
+update_freq = 2.5
+threshold = 200
 
 issue_index = 2
 
-first_time = False
+first_time = True
 
 token = os.getenv('GITHUB_TOKEN')
 
@@ -30,7 +31,6 @@ def send_message(msg: str):
 while True:
 
     cont_0 = os.popen("nvidia-smi -q --id=0").readlines()
-
     cont_1 = os.popen("nvidia-smi -q --id=1").readlines()
 
     timestamp = datetime.datetime.now()
@@ -62,8 +62,13 @@ while True:
     if first_time:
         send_message("[normal routinely notification]\n" + message)
         first_time = False
-    elif cont_0_mem < threshold or cont_1_mem < threshold:
-        send_message("[resource free!]\n" + message)
+    elif cont_0_mem < threshold and cont_1_mem < threshold:
+        send_message(
+            "[resource free!]\nmaking an preempting attempt.\n" + message)
+
+        # 开始缺德
+        os.system('./start_train.sh')
+        # subprocess.call(['./start_train.sh'])
         break
     elif timestamp.minute == 0 or timestamp.minute == 30:
         send_message("[normal routinely notification]\n" + message)
