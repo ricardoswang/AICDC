@@ -12,7 +12,7 @@ threshold = 200
 
 issue_index = 2
 
-first_time = True
+first_time = False
 
 token = os.getenv('GITHUB_TOKEN')
 
@@ -60,18 +60,26 @@ while True:
     print(message)
 
     if first_time:
-        send_message("[normal routinely notification]\n" + message)
+        try:
+            send_message("[normal routinely notification]\n" + message)
+        except:
+            print("failed to send [normal routinely notification] message.")
         first_time = False
     elif cont_0_mem < threshold and cont_1_mem < threshold:
-        send_message(
-            "[resource free!]\nmaking an preempting attempt.\n" + message)
-
+        try:
+            send_message(
+                "[resource free!]\nmaking an preempting attempt.\n" + message)
+        except:
+            pass
         # 开始缺德
         os.system('./start_train.sh')
         # subprocess.call(['./start_train.sh'])
         break
     elif timestamp.minute == 0 or timestamp.minute == 30:
-        send_message("[normal routinely notification]\n" + message)
+        try:
+            send_message("[normal routinely notification]\n" + message)
+        except:
+            print("failed to send [normal routinely notification] message.")
         time.sleep(60.0)
 
     time.sleep(update_freq)
