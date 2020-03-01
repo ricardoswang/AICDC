@@ -80,6 +80,7 @@ while True:
             send_message("[normal routinely notification]\n" + message)
         except:
             print("failed to send [normal routinely notification] message.")
+            continue
         time.sleep(60.0)
 
     time.sleep(update_freq)
