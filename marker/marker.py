@@ -16,7 +16,7 @@ color = [(255, 0, 0), (0, 0, 255)]
 
 while True:
     bbox = input(
-        r"input %d %f %f %f %f to mark a darknet-like boundary box. press enter to show the result\n")
+        r"input %d %f %f %f %f to mark a darknet-like boundary box. press enter to show the result" + '\n')
 
     bbox = bbox.strip()
 
