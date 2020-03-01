@@ -8,7 +8,7 @@ from PIL import Image, ImageEnhance
 
 def dir_valid(dirr: str):
     if not pathlib.Path(dirr).is_dir():
-        print("Cannot found path %s." % dirr)
+        print("can't find path %s." % dirr)
         exit(-1)
 
 

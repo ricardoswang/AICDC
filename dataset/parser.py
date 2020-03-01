@@ -15,7 +15,7 @@ if not pathlib.Path(i_wrapping_path).is_dir():
 l_wrapping_path = input("label path prefix? >>> ")
 
 if not pathlib.Path(l_wrapping_path).is_dir():
-    print("Cannot found path %s." % l_wrapping_path)
+    print("can't find path %s." % l_wrapping_path)
     exit(-1)
 
 print("""
